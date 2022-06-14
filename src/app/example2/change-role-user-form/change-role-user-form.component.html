@@ -1,0 +1,22 @@
+<div class="decore">
+    <form [formGroup]="form">
+        <h2>Edit user #{{form.value.id ?? 'NO'}}</h2>
+        <div class="formGrid">
+            <h3>{{ user.name }}</h3>
+            <div class="row">
+                <div class="item radio">
+                    <input id="Admin" formControlName="role" type="radio" value="Admin" />
+                    <label for="Admin">Admin</label>
+                </div>
+                <div class="item radio">
+                    <input id="Manager" formControlName="role" type="radio" value="Manager" />
+                    <label for="Manager">Manager</label>
+                </div>
+                <div class="item radio">
+                    <input id="Guest" formControlName="role" type="radio" value="Guest" />
+                    <label for="Guest">Guest</label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

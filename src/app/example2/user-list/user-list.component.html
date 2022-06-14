@@ -1,0 +1,60 @@
+<div class="userList">
+    <app-user-list-item *ngFor="let user of users$ | async else loading empty blank" [user]="user"
+        [iam]="iam === user.id" (click)="selectUser = user; openModal(userCard)" (contextmenu)="selectUser = user" [tuiDropdownContext]="contextMenu"></app-user-list-item>
+</div>
+<p   class="sort">Сортировать 
+    <b (click)="nextStrategy()"> {{getSortStrategy().name}}</b> - 
+    <b (click)="nextStrategyResort()"> {{ getResortStrategy().name }}</b></p>
+
+<ng-template #blank>
+    <div class="empty">
+        <img src="/assets/blank.gif">
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="loading">
+        <div class="row">
+            <img src="/assets/loading.gif" class="light" style="filter: invert() brightness(1.2) grayscale();">
+            <img src="/assets/loading.gif" class='dark' style="filter: contrast(2) grayscale();">
+            <h2>Loading...</h2>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #editForm>
+    <app-edit-user-form [user]="selectUser"></app-edit-user-form>
+</ng-template>
+
+<ng-template #changeRoleForm>
+    <app-change-role-user-form [user]="selectUser!"></app-change-role-user-form>
+</ng-template>
+
+<ng-template #userCard>
+    <app-user-card [user]="selectUser!"></app-user-card>
+</ng-template>
+
+<ng-template #contextMenu let-close="close" let-activeZone="activeZone">
+    <div class="context-menu">
+        <div class="item-menu" (click)="openModal(editForm); close()">
+            <i class="fa fa-edit"></i>
+            <span>Редактировать</span>
+        </div>
+        <div class="item-menu" (click)="openModal(changeRoleForm); close()">
+            <i class="fa fa-user-pen"></i>
+            <span>Установить роль</span>
+        </div>
+        <div class="item-menu" (click)="changeCurrentUser(); close()">
+            <i class="fa fa-user"></i>
+            <span>Сменить контекст</span>
+        </div>
+        <div class="item-menu" (click)="removeAvatar(); close()">
+            <i class="fa fa-image"></i>
+            <span>Удалить аватар</span>
+        </div>
+        <div class="item-menu"  (click)="removeUser(); close()">
+            <i class="fa fa-trash"></i>
+            <span>Удалить</span>
+        </div>
+    </div>
+</ng-template>

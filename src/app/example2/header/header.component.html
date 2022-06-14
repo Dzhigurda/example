@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="title">
+        <ng-content></ng-content>
+    </div>
+    <app-user-prview [user]="user$ | async" (open)="openSettingModal(userEditor, $event)"></app-user-prview>
+    <app-change-theme></app-change-theme>
+</div> 
+
+<ng-template #userEditor>
+    <app-edit-user-form [user]="user!"></app-edit-user-form>
+</ng-template>

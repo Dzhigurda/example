@@ -1,0 +1,4 @@
+<div class="background" *ngIf="template" (click)="close()"></div>
+<div class="modal" *ngIf="template">
+    <ng-container [ngTemplateOutlet]="template"></ng-container>
+</div>

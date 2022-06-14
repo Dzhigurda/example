@@ -1,0 +1,22 @@
+<app-header>NgRx storage</app-header>
+<div class="wrapper">
+    <app-user-counter></app-user-counter>
+    <div class="panel">
+        <div>
+            <h2>Users</h2>
+            <p>
+                <input type="checkbox" [checked]="GUI.theme === 'dark'" (change)="changeTheme($event)" />
+                <span> Select custom-color-theme is {{GUI?.theme}}</span>
+            </p>
+        </div>
+        <div class="between"></div>
+        <button (click)="openModal(addUserModal)"><i class="fa-regular fa-plus"></i> Add User</button>
+    </div>
+    <app-user-list></app-user-list>
+</div>
+
+<app-micro-modal></app-micro-modal>
+
+<ng-template #addUserModal>
+    <app-add-user-form></app-add-user-form>
+</ng-template>

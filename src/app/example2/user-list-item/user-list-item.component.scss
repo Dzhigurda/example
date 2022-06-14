@@ -1,0 +1,49 @@
+.user-view {
+    gap: 10px;
+    padding: 0 10px;
+    flex: 0 0 250px;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    height: 56px;  
+    margin-bottom: 8px; 
+    border-left: 3px solid #888;
+    &.iam {
+        border-left-color: #86e086;
+    }
+    .avatar-circle {
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+        background-size: cover !important;
+        user-select: none;
+    }
+
+    .name {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: none;
+        color: #333;
+    }
+    .role {
+        color: #888;
+    }
+
+    &:hover {
+        transform: translateX(10px);
+        cursor: pointer;
+    }
+}
+
+:host-context(.dark-mode) {
+    .user-view {  
+        &.iam {
+            border-left-color: rgb(35, 109, 35);
+        }
+    }
+
+    .name {
+        color: #cacaca;
+    }
+}

@@ -1,0 +1,38 @@
+<div class="decore">
+    <h2>Add user </h2>
+    <form [formGroup]="form">
+        <div class="formGrid">
+            <div class="item">
+                <label>Имя</label>
+                <input formControlName="name" />
+            </div>
+            <div class="row">
+                <div class="item radio">
+                    <input id="man" formControlName="gender" type="radio" value="WOMAN" />
+                    <label for="man">Женский</label>
+                </div>
+                <div class="item radio">
+                    <input id="woman" formControlName="gender" type="radio" value="MAN" />
+                    <label for="woman">Мужской</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item radio">
+                    <input id="Admin" formControlName="role" type="radio" value="Admin" />
+                    <label for="Admin">Admin</label>
+                </div>
+                <div class="item radio">
+                    <input id="Manager" formControlName="role" type="radio" value="Manager" />
+                    <label for="Manager">Manager</label>
+                </div>
+                <div class="item radio">
+                    <input id="Guest" formControlName="role" type="radio" value="Guest" />
+                    <label for="Guest">Guest</label>
+                </div>
+            </div>
+            <div class="item">
+                <button (click)="onAdd()">Add</button>
+            </div>
+        </div>
+    </form>
+</div>

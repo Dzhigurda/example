@@ -1,0 +1,41 @@
+.header {
+    margin: 0;
+    padding: 0px 20px;
+    background-color: #e4e4e7;
+    display: flex;
+    gap: 20px;
+    height: 56px;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+    .title {
+        flex: 1;
+        font-weight: bold;
+        color: #666;
+        user-select: none;
+    }
+ 
+
+}
+
+
+
+:host-context(.dark-mode) {
+    .header {
+        color: #f0f0f0;
+        background-color: #202020;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+        .title {
+            color: rgb(163, 163, 163);
+        }
+
+        .user-view {
+            &:hover {
+                background: #181411;
+            }
+        }
+
+    }
+
+}

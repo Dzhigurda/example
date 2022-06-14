@@ -1,0 +1,45 @@
+<div class="counter" *ngIf="sum > 0">
+<div class="counter-item island chart a" >
+    <tui-ring-chart [value]="valueGender" [content]="content"></tui-ring-chart>
+</div>
+<div class="counter-item island chart a2" >
+    <tui-ring-chart [value]="valueRole" [content]="content2"></tui-ring-chart>
+</div>
+<div class="counter-item island b1">
+    <div class="count"><i class="fa fa-users"></i> {{counter?.all ?? 0}}</div>
+    <div class="comment">Всего</div>
+</div>
+<div class="counter-item island b2">
+    <div class="count"><i class="fa fa-person-dress"></i> {{counter?.woman ?? 0}}</div>
+    <div class="comment">Woman</div>
+</div>
+<div class="counter-item island b3">
+    <div class="count"><i class="fa fa-person"></i> {{counter?.man ?? 0}}</div>
+    <div class="comment">Man</div>
+</div>
+<div class="counter-item island c1">
+    <div class="count"><i class="fa fa-user-tie"></i> {{counter?.admin ?? 0}}</div>
+    <div class="comment">Admins</div>
+</div>
+<div class="counter-item island c2">
+    <div class="count"><i class="fa fa-user-gear"></i> {{counter?.manager ?? 0}}</div>
+    <div class="comment">Managers</div>
+</div>
+<div class="counter-item island c3">
+    <div class="count"><i class="fa fa-user"></i> {{counter?.guest ?? 0}}</div>
+    <div class="comment">Guests</div>
+</div>
+
+</div>
+<ng-template #content let-index>
+    <div class="color">
+    <span>{{ getValueGender(index) }}</span>
+        <div>{{getLabelGender(index)}}</div>
+    </div>
+</ng-template>
+<ng-template #content2 let-index>
+    <div class="color">
+        <span> {{ getValueRole(index) }}</span>
+        <div>{{getLabelRole(index)}}</div>
+    </div>
+</ng-template>

@@ -1,0 +1,22 @@
+.wrapper {
+    margin: 10px auto;
+    width: 824px;
+    height: calc(100vh - 121px);
+}
+.panel {
+
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    .between {
+        flex: 1;
+    }
+    h2 {
+        color: #444;
+        margin: 4px 0;
+    }
+    p {
+        margin: 0;
+    }
+    padding: 20px 0;
+}

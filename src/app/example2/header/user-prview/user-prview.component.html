@@ -1,0 +1,10 @@
+<div class="user-view" (click)="open.emit(user!)">
+    <div class="avatar-circle" #avatar>
+    </div>
+    <div class="desc">
+        <div class="name">{{ user?.name ?? 'No name' }}</div>
+        <div class="role">{{ user?.role ?? 'no role' }}</div>
+    </div>
+</div>
+
+ 

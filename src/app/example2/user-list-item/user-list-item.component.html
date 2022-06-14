@@ -1,0 +1,6 @@
+<div [ngClass]="{'user-view': true, 'island': true, 'iam': iam}">
+    <div class="avatar-circle" #avatar>
+    </div>
+    <div class="name">{{ user?.name || '-'}}</div>
+    <div class="role">{{ user?.role || '-'}}</div>
+</div>

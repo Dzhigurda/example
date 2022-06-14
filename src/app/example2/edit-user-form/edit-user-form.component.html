@@ -1,0 +1,25 @@
+<div class="decore">
+    <h2>Edit user #{{form.value.id ?? 'NO'}}</h2>
+    <form [formGroup]="form">
+        <div class="formGrid">
+            <div class="item">
+                <label>Имя</label>
+                <input formControlName="name" (keyup)="enterDetect($event)" />
+            </div>
+            <div class="row">
+                <div class="item radio">
+                    <input id="man" formControlName="gender" type="radio" value="WOMAN" />
+                    <label for="man">Женский</label> 
+                </div>
+                <div class="item radio">
+                    <input id="woman" formControlName="gender" type="radio" value="MAN" />
+                    <label for="woman">Мужской</label> 
+                </div>
+            </div> 
+            <div class="item">
+                <label>Аватар</label>
+                <input #file type="file" multiple (change)="uploadFile()" />
+            </div>
+        </div>
+    </form>
+</div>

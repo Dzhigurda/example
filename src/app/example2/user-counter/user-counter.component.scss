@@ -1,0 +1,120 @@
+ .counter {
+     display: grid;
+     gap: 8px;
+     padding: 10px 0;
+
+     grid-template-columns: repeat(7, 1fr);
+     grid-auto-rows: minmax(80px, auto);
+     grid-template-areas:
+         "a a a2 a2 b1 b2 b3 "
+         "a a a2 a2 c1 c2 c3 ";
+ }
+
+
+ .a {
+     grid-area: a;
+ }
+
+ .a2 {
+     grid-area: a2;
+ }
+
+ .b1 {
+     grid-area: b1;
+ }
+
+ .b2 {
+     grid-area: b2;
+ }
+
+ .b3 {
+     grid-area: b3;
+ }
+
+ .c1 {
+     grid-area: c1;
+ }
+
+ .c2 {
+     grid-area: c2;
+ }
+
+ .c3 {
+     grid-area: c3;
+ }
+
+ :host {
+     --tui-chart-0: #c779d0;
+     --tui-chart-1: #feac5e;
+     --tui-chart-2: #ff5f6d;
+     --tui-chart-3: #4bc0c8;
+     --tui-chart-4: #9795cd;
+ }
+
+ .hr {
+     height: 40px;
+     border-left: 1px solid #ddd;
+ }
+
+ .counter-item {
+     flex: 1;
+     padding: 10px 15px;
+
+     .count {
+         display: flex;
+         gap: 10px;
+         align-items: center;
+         font-size: 30px;
+
+         i {
+             display: block;
+             font-size: 16px;
+             width: 18px;
+             color: #888;
+         }
+     }
+
+     .comment {
+         color: #888;
+         font-size: 10px;
+         margin-left: 30px;
+     }
+
+     &.chart {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+     }
+ }
+
+
+ .color {
+    color: #333;
+    span {
+        font-size: 30px;
+    }
+ }
+
+ :host-context(.dark-mode) {
+
+     .hr {
+         border-left: 1px solid #ddd;
+     }
+
+     .counter-item {
+         .count {
+             color: #ccc;
+
+             i {
+                 color: #ccc;
+             }
+         }
+
+         .comment {
+             color: #888;
+         }
+     }
+     .color {
+        color: #ccc; 
+     }
+ }

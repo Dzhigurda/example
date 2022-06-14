@@ -1,0 +1,12 @@
+<div class="user">
+    <div class="avatar">
+        <img [src]="persone.avatar ?? '/assets/user_default.png'" />
+    </div>
+    <div class="desc">
+        <p class="small">Пользователь номер {{persone.id}}</p>
+        <h2>{{persone.name}}</h2> 
+        <p>Должность {{ persone.role }}</p>
+        <p class="small" *ngIf="persone.role !== 'Guest'">Сотрудни{{ persone.gender === 'MAN' ? 'к' : 'ца'}} нашей компании</p>
+        <p class="small" *ngIf="persone.role === 'Guest'">Гость{{ persone.gender === 'MAN' ? '' : 'я'}}</p>
+    </div>
+</div>
