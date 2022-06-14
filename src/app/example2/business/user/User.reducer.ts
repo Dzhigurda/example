@@ -49,6 +49,18 @@ export function reducer(
             return [...state.filter(u => u.id !== action.id), user].sort(sortByIdASC);
         }
 
+        case ActionTypes.LoadUsers: {
+            return state;
+        }
+
+        case ActionTypes.LoadedUsers: {
+            return [...action.users].sort(sortByIdASC);
+        }
+
+        case ActionTypes.ErrorLoadedUsers: {
+            return state;
+        }
+ 
         default: {
             return state;
         }

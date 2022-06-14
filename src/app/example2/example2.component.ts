@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, ChangeThemeGUI, GUI } from './business';
+import { AppState, ChangeThemeGUI, GUI, LoadUsersAction } from './business';
 import { MicroModalService } from './micro-modal/micro-modal.service';
 import { UserService } from './user.service';
 
@@ -19,7 +19,7 @@ export class Example2Component implements OnInit {
       console.log(gui);
       this.GUI = gui;
     })
-    this.userService.getAll().subscribe();
+     this.store.dispatch(new LoadUsersAction());
   }
  
   changeTheme(theme: any) {

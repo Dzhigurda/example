@@ -22,6 +22,8 @@ import {TuiRingChartModule} from '@taiga-ui/addon-charts';
 import {TuiDropdownContextModule} from '@taiga-ui/kit';
 import {TuiPortalModule} from '@taiga-ui/cdk';
 import { UserCardComponent } from './user-card/user-card.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffect } from './business/user/User.effect';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     TuiPortalModule,
     StoreModule.forFeature("users", UserReducer),
     StoreModule.forFeature("gui", GUIReducer), 
-    StoreModule.forFeature("current_user", CurrentUserreducer)
+    StoreModule.forFeature("current_user", CurrentUserreducer),
+    EffectsModule.forFeature([UserEffect]),
   ]
 })
 export class Example2Module { }

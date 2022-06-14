@@ -1,5 +1,5 @@
 import { ActionTypes } from "../actions";
-import { UserAvatarFormDTO, UserDTO, UserFormDTO, UserRoleFormDTO } from "./User";
+import { User, UserAvatarFormDTO, UserDTO, UserFormDTO, UserRoleFormDTO } from "./User";
 import { Action } from '@ngrx/store';
 
 export class UserAction {
@@ -40,5 +40,18 @@ export class ChangeCurrentUser  implements Action {
     constructor(public id: number) { }
 }
 
+export class LoadUsersAction  implements Action {
+    readonly type = ActionTypes.LoadUsers;
+    constructor() { }
+}
+export class LoadedUsers implements Action {
+    readonly type = ActionTypes.LoadedUsers;
+    constructor(public users: User[]) { }
+}
 
-export type UserActionUnion = AddUser | RemoveUser | ChangeUser | ChangeUserRole | SetUserAvatar | ClearUserAvatar;
+export class ErrorLoadedUsers implements Action {
+    readonly type = ActionTypes.ErrorLoadedUsers;
+    constructor() { }
+}
+
+export type UserActionUnion = AddUser | RemoveUser | ChangeUser | ChangeUserRole | SetUserAvatar | ClearUserAvatar | LoadUsersAction | LoadedUsers | ErrorLoadedUsers;

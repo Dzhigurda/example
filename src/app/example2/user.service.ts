@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddUser, AppState, ClearUserAvatar, RemoveUser, User, UserAvatarFormDTO, UserDTO, UserFormDTO, UserRoleFormDTO } from './business';
 
@@ -25,14 +25,13 @@ export class UserService {
       )
   }
 
+  
   getAll() {
-    return this.http.get<UserDTO[]>(`${environment.host}/api/users`).pipe(tap({
-      next: (users) => {
-        users.forEach(user => {
-          this.store.dispatch(new AddUser(user));
-        });
-      }
-    }))
+    return this.http.get<UserDTO[]>(`${environment.host}/api/users`).pipe(
+      map(r => {
+        return r.map(u => new User().restore(u));
+      })
+    )
   }
 
   patch(id: number, user: UserDTO | UserRoleFormDTO | UserFormDTO | UserAvatarFormDTO) {

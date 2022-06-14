@@ -10,7 +10,10 @@ export enum ActionTypes {
     SetAvatar = '[Example User] Set avatar',
     ClearAvatar = '[Example User] Clear avatar',
     ChangeThemeGUI = '[Example GUI] Change GUI',
-    ChangeCurrentUser = "[Example CurrentUser] Change CurrentUser"
+    ChangeCurrentUser = "[Example CurrentUser] Change CurrentUser",
+    LoadUsers = "[Example User] Load Users",
+    LoadedUsers = "[Example User] Users Loaded Success",
+    ErrorLoadedUsers = "[Example User] Users Loaded fail",
 }
 
 export type ActionsUnion = UserActionUnion | GUIActionUnion;
