@@ -36,15 +36,8 @@ export class AddUserFormComponent implements OnInit {
   onAdd() {
     if (!this.form.valid) return;
     const userFormDTO = this.form.getRawValue() as UserDTO;
-    //this.store.dispatch(new AddUser(userFormDTO));
-    this.userService.put(userFormDTO).subscribe({
-      next: () => {
-        this.modal.close();
-      },
-      error: () => {
-        alert("Error");
-      }
-    })
+    this.store.dispatch(new AddUser(userFormDTO));
+    this.modal.close();
   }
 
   ngOnDestroy(): void {

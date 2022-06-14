@@ -21,19 +21,7 @@
         </div>
     </div>
 </ng-template>
-
-<ng-template #editForm>
-    <app-edit-user-form [user]="selectUser"></app-edit-user-form>
-</ng-template>
-
-<ng-template #changeRoleForm>
-    <app-change-role-user-form [user]="selectUser!"></app-change-role-user-form>
-</ng-template>
-
-<ng-template #userCard>
-    <app-user-card [user]="selectUser!"></app-user-card>
-</ng-template>
-
+ 
 <ng-template #contextMenu let-close="close" let-activeZone="activeZone">
     <div class="context-menu">
         <div class="item-menu" (click)="openModal(editForm); close()">
@@ -57,4 +45,16 @@
             <span>Удалить</span>
         </div>
     </div>
+</ng-template>
+
+<ng-template #editForm>
+    <app-edit-user-form [user]="selectUser"></app-edit-user-form>
+</ng-template>
+
+<ng-template #changeRoleForm>
+    <app-change-role-user-form [user]="selectUser!"></app-change-role-user-form>
+</ng-template>
+
+<ng-template #userCard>
+    <app-user-card [user]="selectUser!"></app-user-card>
 </ng-template>

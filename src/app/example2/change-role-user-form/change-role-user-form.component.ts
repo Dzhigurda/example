@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, take, takeUntil } from 'rxjs';
 import { AppState, ChangeUserRole, RoleType, UserDTO, UserRoleFormDTO } from '../business';
 import { selectUserByID } from '../business/user/User.select';
 import { MicroModalService } from '../micro-modal/micro-modal.service';
@@ -28,13 +28,13 @@ export class ChangeRoleUserFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.store.select(selectUserByID(this.user!.id))
-      .pipe(takeUntil(this.destroy$))
+      .pipe(take(1))
       .subscribe(user => {
         this.form.setValue(user!.getModelForRole());
       })
 
     this.form.valueChanges.pipe(
-      debounceTime(300),
+      debounceTime(600),
       distinctUntilChanged(),
     ).subscribe(r => {
       this.onSave();
@@ -44,8 +44,7 @@ export class ChangeRoleUserFormComponent implements OnInit, OnDestroy {
   onSave() {
     if (!this.form.valid) return;
     const userFormDTO = this.form.getRawValue() as UserRoleFormDTO;
-    // this.store.dispatch(new ChangeUserRole(userFormDTO))
-    this.service.patch(this.form.value!.id!, userFormDTO).subscribe()
+    this.store.dispatch(new ChangeUserRole(userFormDTO));
   }
 
   ngOnDestroy(): void {

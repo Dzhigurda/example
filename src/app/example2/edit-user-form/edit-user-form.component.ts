@@ -61,24 +61,21 @@ export class EditUserFormComponent implements OnInit, OnDestroy {
     if (this.customeFile.nativeElement.files) {
       this.fileUploadService.uploadFile(
         this.customeFile.nativeElement.files
-      ).pipe(switchMap((files: UploadedFileDTO[]) => {
-        return this.service.patch(this.user!.id!, { id: this.user!.id!, avatar: `http://localhost:4202/avatar/${files[0].name}` })
-      }))
-        .subscribe({
-          next: user => {
-            // change avatar file[0] 
-            this.store.dispatch(new SetUserAvatar({ id: user.id!, avatar: user.avatar! }));
-          }, error: (err) => {
-            console.log(err.error);
-          }
-        });
+      ).subscribe({
+        next: uploadFile => {
+          // change avatar file[0] 
+          this.store.dispatch(new SetUserAvatar({ id: this.user!.id!, avatar: `http://localhost:4202/avatar/${uploadFile[0].name!}` }));
+        }, error: (err) => {
+          console.log(err.error);
+        }
+      });
     }
   }
   onSave() {
     if (!this.form.valid) return;
     const userFormDTO = this.form.getRawValue() as UserFormDTO;
-    // this.store.dispatch(new ChangeUser(userFormDTO))
-    this.service.patch(userFormDTO.id, userFormDTO).subscribe();
+    this.store.dispatch(new ChangeUser(userFormDTO));
+    // this.service.patch(userFormDTO.id, userFormDTO).subscribe();
   }
 
   ngOnDestroy(): void {

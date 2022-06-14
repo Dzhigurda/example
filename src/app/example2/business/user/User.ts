@@ -24,19 +24,24 @@ export interface UserDTO extends UserFormDTO, UserRoleFormDTO {
 }
 
 
-export class User { 
+export class User {
     public id: number = 0;
     public role: RoleType = "Guest";
     public name: string = "Default name";
     public gender: GenderType = "MAN";
 
     public avatar?: string;
+    private oldState?: User;
+
+
+
 
     changeDescription(user: UserFormDTO) {
         this.name = user.name;
         this.gender = user.gender;
         return this;
     }
+
 
     setAvatar(url: string) {
         this.avatar = url;
@@ -49,6 +54,15 @@ export class User {
 
     changeRole(user: UserRoleFormDTO) {
         this.role = user.role;
+        return this;
+    }
+
+    public patch(user: UserDTO) {
+        this.id = user.id ?? this.id;
+        this.name = user.name ?? this.name;
+        this.gender = user.gender ?? this.gender;
+        this.role = user.role ?? this.role;
+        this.avatar = user.avatar ?? this.avatar;
         return this;
     }
 

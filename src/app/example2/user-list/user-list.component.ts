@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, map, mergeMap, mergeWith, Observable, Subject, switchMap, tap } from 'rxjs';
-import { AppState, ChangeCurrentUser, ClearUserAvatar, User } from '../business';
+import { AppState, ChangeCurrentUser, ClearUserAvatar, RemoveUser, User } from '../business';
 import { selectCurrenUserId, selectUsers } from '../business/user/User.select';
 import { MicroModalService } from '../micro-modal/micro-modal.service';
 import { UserService } from '../user.service';
@@ -70,7 +70,7 @@ export class UserListComponent implements OnInit {
     this.resort.next(true);
   }
   nextStrategyResort() {
-    this.currentResortStrategyIndex++;
+    this.currentResortStrategyIndex++; 
     if (this.currentResortStrategyIndex === this.resortStrategy.length)
       this.currentResortStrategyIndex = 0;
     this.resort.next(true);
@@ -83,18 +83,21 @@ export class UserListComponent implements OnInit {
 
   changeCurrentUser() {
     if (!this.selectUser) return;
-    this.store.dispatch(new ChangeCurrentUser(this.selectUser.id))
+    const id = this.selectUser.id;
+    this.store.dispatch(new ChangeCurrentUser(id))
 
-  }
+  } 
   removeAvatar() {
     if (!this.selectUser) return;
     const id = this.selectUser.id;
-    this.userService.clearAvatar(id).subscribe(_ => {
-      console.log("Avatar removed");
-    })  
+    this.store.dispatch(new ClearUserAvatar(id))
+ 
   }
 
   removeUser() {
+    if (!this.selectUser) return;
+    const id = this.selectUser.id;
+    this.store.dispatch(new RemoveUser(id))
     this.selectUser = undefined;
   }
 
