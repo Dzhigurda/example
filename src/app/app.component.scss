@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    .header {
+        flex: 1;
+        overflow: auto;
+        background: #f0f0f0;
+    }
+    .menu {
+        flex: 0 0 40px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 4px;
+    }
+}
+:host-context(.dark-mode) {
+    :host { 
+        .header { 
+            background: #242424;
+        }
+        .menu { 
+            background: rgb(0, 0, 0); 
+        }
+    }
+}
