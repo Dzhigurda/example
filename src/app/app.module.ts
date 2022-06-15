@@ -14,7 +14,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffect } from './example2/business/user/User.effect';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:4202', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { UserEffect } from './example2/business/user/User.effect';
     TuiRootModule,
     Example2Module,
     EffectsModule.forRoot(),
-    StoreModule.forRoot({}), 
+    StoreModule.forRoot({}),
+    SocketIoModule.forRoot(config), 
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }), StoreModule.forRoot(reducers, { metaReducers }), !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],

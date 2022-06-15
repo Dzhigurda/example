@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
+import { Socket } from 'ngx-socket-io';
 import { map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppState, User, UserAvatarFormDTO, UserDTO, UserFormDTO, UserRoleFormDTO } from './business';
@@ -11,7 +12,12 @@ import { AppState, User, UserAvatarFormDTO, UserDTO, UserFormDTO, UserRoleFormDT
 export class UserService {
 
 
-  constructor(private http: HttpClient, private store: Store<AppState>) { }
+  changeUsers$ = this.socket.fromEvent<Action>('user');
+  constructor(private http: HttpClient, private store: Store<AppState>, private socket: Socket) {
+    this.changeUsers$.subscribe((action) => {
+      this.store.dispatch(action);
+    })
+  }
 
 
   add(user: UserFormDTO) {

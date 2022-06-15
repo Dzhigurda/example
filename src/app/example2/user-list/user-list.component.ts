@@ -91,7 +91,6 @@ export class UserListComponent implements OnInit {
     if (!this.selectUser) return;
     const id = this.selectUser.id;
     this.store.dispatch(new ClearUserAvatar(id))
- 
   }
 
   removeUser() {
