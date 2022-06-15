@@ -16,7 +16,7 @@ import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:4202', options: {} };
+const config: SocketIoConfig = { url: environment.host, options: {} };
 
 @NgModule({
   declarations: [

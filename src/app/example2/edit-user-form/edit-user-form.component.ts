@@ -64,7 +64,7 @@ export class EditUserFormComponent implements OnInit, OnDestroy {
       ).subscribe({
         next: uploadFile => {
           // change avatar file[0] 
-          this.store.dispatch(new SetUserAvatar({ id: this.user!.id!, avatar: `http://localhost:4202/avatar/${uploadFile[0].name!}` }));
+          this.store.dispatch(new SetUserAvatar({ id: this.user!.id!, avatar: `/avatar/${uploadFile[0].name!}` }));
         }, error: (err) => {
           console.log(err.error);
         }
